@@ -1,4 +1,4 @@
-# prototype-django
+# Prototype-django
 
 Dit project is een eenvoudige Django-webapplicatie waarmee geregistreerde gebruikers artikelen kunnen maken, bekijken en beheren. Het project maakt gebruik van het Django-framework en heeft basisfunctionaliteiten zoals gebruikersauthenticatie, artikelbeheer en een administratief dashboard.
 
