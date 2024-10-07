@@ -9,5 +9,5 @@ De applicatie bestaat uit een enkele app, `articles`, die de functionaliteiten v
 ### Functionaliteiten
 
 - **Gebruikersauthenticatie**: Inloggen en registreren van gebruikers.
-- **Artikelen**: Overzicht van artikelen, details bekijken, en artikelen toevoegen (alleen door geregistreerde gebruikers).
+- **Artikelen**: Overzicht van artikelen, details bekijken, en artikelen toevoegen,bewerken en verwijderen (alleen door geregistreerde gebruikers).
 - **Admin interface**: Een beheerinterface waarmee beheerders artikelen kunnen toevoegen, bewerken en verwijderen.
