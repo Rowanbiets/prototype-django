@@ -114,10 +114,28 @@ USE_I18N = True
 USE_TZ = True
 
 
+
+# Deze URL wordt gebruikt om te bepalen waar gebruikers naartoe worden geleid nadat ze succesvol zijn ingelogd.
+LOGIN_REDIRECT_URL = 'articles'  # Dit moet overeenkomen met de naam van je artikelen URL
+
+# Deze URL wordt gebruikt om te bepalen waar gebruikers naartoe worden geleid nadat ze zijn uitgelogd.
+LOGOUT_REDIRECT_URL = 'login'  # Dit moet overeenkomen met de naam van je login URL
+
+# Optional: Deze URL wordt gebruikt voor het inlogscherm als er een 'login_required' decorator wordt gebruikt
+LOGIN_URL = 'login'
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+# Dit is de locatie waar je statische bestanden worden verzameld
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
+# Voor productie, gebruik deze instellingen
+STATIC_ROOT = BASE_DIR / "staticfiles"  # Dit is waar collectstatic bestanden verzamelt
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

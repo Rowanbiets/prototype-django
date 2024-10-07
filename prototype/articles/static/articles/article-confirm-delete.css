@@ -1,0 +1,36 @@
+/* article_confirm_delete.css */
+h1 {
+    font-size: 26px;
+    color: #D32F2F;
+    text-align: center;
+    margin-top: 40px;
+}
+
+form {
+    text-align: center;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #D32F2F;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #C62828;
+}
+
+a {
+    display: inline-block;
+    margin-top: 20px;
+    color: #1976D2;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

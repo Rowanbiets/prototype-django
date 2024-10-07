@@ -1,15 +1,47 @@
-{% extends "master.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="{% static 'articles/main.css' %}">
+    <link rel="stylesheet" href="{% static 'articles/login.css' %}">
+<body>
+    <header>
+        <h1>Welcome to My Articles</h1>
 
-{% block title %}
-  My Articles
-{% endblock %}
+       
+        {% if user.is_authenticated %}
+            <p>Hello, {{ user.username }}! 
+                <a href="{% url 'articles' %}">View Articles</a> | 
+                <a href="{% url 'logout' %}">Logout</a>
+            </p>
+        {% else %}
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit">Login</button>
+                <p><a href="{% url 'signup' %}">Sign up</a> if you don't have an account.</p>
+                
+                <!-- Toon foutmelding indien verkeerde inloggegevens -->
+                {% if form.errors %}
+                    <p class="error">Invalid username or password. Please try again.</p>
+                {% endif %}
+            </form>
+        {% endif %}
+    </header>
 
+    <main>
+        <h3>About This Site</h3>
+        <p>This is a platform where you can read, add, edit, and delete articles. Please log in to manage your articles.</p>
+    </main>
 
-{% block content %}
-  <h1>My Articles</h1>
-
-  <h3>Articles</h3>
-  
-  <p>Check out all our <a href="articles/">articles</a></p>
-  
-{% endblock %}
+    <footer>
+        <p>&copy; 2024 My Articles. All rights reserved.</p>
+    </footer>
+</body>
+</html>

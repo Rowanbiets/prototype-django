@@ -1,16 +1,16 @@
+{% extends "master.html" %}
+{% load static %}
 
-    {% extends "master.html" %}
-
-    {% block title %}
-  Details about {{ myarticle.title }} {{ myarticle.content }}
+{% block title %}
+Article Details
 {% endblock %}
-</head>
-<body>
-    {% block content %}
-<h1>{{ myarticle.firstname }} {{ myarticle.lastname }}</h1>
-  
-<p>Author: {{ myarticle.author}}</p>
-<p>Source {{ myarticle.source }}</p>
 
-<p>Back to <a href="/articles">Articles</a></p>
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'articles/details.css' %}">
+
+<h1>{{ myarticle.title }}</h1>
+<p>{{ myarticle.content }}</p>
+<p>Author: {{ myarticle.author }}</p>
+<p>Created at: {{ myarticle.created_at }}</p>
+<a href="{% url 'articles' %}">Back to Articles</a>
 {% endblock %}

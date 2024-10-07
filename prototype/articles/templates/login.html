@@ -1,0 +1,28 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'articles/login.css' %}">
+
+<h1>Login</h1>
+
+<form method="post">
+    {% csrf_token %}
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" name="username" required>
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" name="password" required>
+    </div>
+    <button type="submit">Login</button>
+    {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
+</form>
+{% endblock %}

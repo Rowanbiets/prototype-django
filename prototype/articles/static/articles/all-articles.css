@@ -1,0 +1,128 @@
+/* all_articles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+header {
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    position: relative; /* Voegt relatieve positionering toe voor latere styling */
+}
+
+h1 {
+    color: #333;
+    font-size: 28px;
+    margin: 0;
+}
+
+a {
+    color: #FF5722;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.main-link {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.user-info {
+    position: absolute; /* Maak de gebruiker informatie absoluut gepositioneerd */
+    right: 20px; /* Plaats het aan de rechterkant */
+    top: 20px; /* Plaats het iets onder de bovenkant */
+    text-align: right; /* Lijn de tekst rechts uit */
+    font-size: 14px; /* Kleinere tekst voor de gebruikersinformatie */
+}
+
+.logout-link {
+    color: #999;
+}
+
+main {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+ul {
+    list-style-type: none; /* Verwijdert de opsommingstekens */
+    padding: 0;
+}
+
+li {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between; /* Maakt ruimte tussen de links */
+}
+
+li:last-child {
+    border-bottom: none; /* Verwijdert de onderste rand van het laatste item */
+}
+
+.edit-link {
+    margin-right: 10px; /* Ruimte tussen de Edit-link en de Delete-knop */
+}
+
+button {
+    background-color: #FF5722;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #e64a19;
+}
+
+
+.home-button {
+    display: inline-block;
+    margin-left: 5px; 
+    padding: 10px 10px; 
+    background-color: #FF5722; 
+    color: white; /* Witte tekstkleur */
+    text-decoration: none; 
+    border-radius: 3px;
+    margin-bottom: 20px;
+}
+
+.home-button:hover {
+    background-color: #b43914; /* Donkerder groen bij hover */
+    text-decoration: none   ;
+}
+
+
+/* Responsive styles */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    li {
+        flex-direction: column; /* Zet de links onder elkaar op kleinere schermen */
+        align-items: flex-start; /* Lijnt de links links uit */
+    }
+
+    button {
+        width: 100%; /* Maakt de knop breed op kleinere schermen */
+        margin-top: 5px; /* Ruimte boven de knop */
+    }
+}

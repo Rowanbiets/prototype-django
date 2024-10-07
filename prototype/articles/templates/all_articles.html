@@ -1,18 +1,41 @@
-{% extends "master.html" %}
-
-{% block title %}
-My Articles - List of all articles
-{% endblock %}
-    
-
-{% block content %}
-
-<p><a href="/">HOME</a></p>
-<h1>Articles</h1>
-  
-<ul>
-{% for x in myarticles %}
- <li><a href="details/{{x.id}}">{{ x.title }} {{ x.content }}</li>
-{% endfor %}
-</ul>
-{% endblock %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'articles/all-articles.css' %}">
+    <title>My Articles</title>
+</head>
+<body>
+    <a class="home-button" href="{% url 'main' %}">Home</a> <!-- Home-knop -->
+    <header>
+        
+        <h1>Your Articles</h1>
+        <div class="user-info">
+            {% if user.is_authenticated %}
+                <p><strong>{{ user.username }}</strong></p>
+                <p><a href="{% url 'logout' %}">Logout</a></p>
+            {% endif %}
+        </div>
+        <a class="main-link" href="{% url 'article_add' %}">Add Article</a> <!-- Link om een artikel toe te voegen -->
+       
+    </header>
+    <main>
+        <ul>
+            {% for article in myarticles %}
+                <li>
+                    <a href="{% url 'details' article.id %}">{{ article.title }}</a>
+                    <div>
+                        <a href="{% url 'article_edit' article.id %}" class="edit-link">Edit</a>
+                        <form method="post" action="{% url 'article_delete' article.id %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="delete-button">Delete</button>
+                        </form>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </main>
+</body>
+</html>
