@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views 
 
+
 urlpatterns = [
     path('', views.main, name='main'),
     path('articles/', views.articles, name='articles'),
@@ -16,4 +17,12 @@ urlpatterns = [
     path('articles/add/', views.article_add, name='article_add'),
     path('articles/edit/<int:id>/', views.article_edit, name='article_edit'),
     path('articles/delete/<int:id>/', views.article_delete, name='article_delete'),
+    
+    # Likes 
+    path('articles/like/<int:id>/', views.like_article, name='like_article'),
+    
+    
+     
+   
+
 ]

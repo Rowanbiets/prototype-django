@@ -1,6 +1,7 @@
 # forms.py
 from django import forms
 from .models import Article
+from .models import Comment
 
 class ArticleForm(forms.ModelForm):
     class Meta:
@@ -9,3 +10,8 @@ class ArticleForm(forms.ModelForm):
         widgets = {
             'author': forms.HiddenInput(),  
         }
+        
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['content']

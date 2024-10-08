@@ -25,6 +25,7 @@ a {
     color: #FF5722;
     text-decoration: none;
     font-weight: bold;
+    
 }
 
 a:hover {
@@ -40,8 +41,14 @@ a:hover {
     position: absolute; /* Maak de gebruiker informatie absoluut gepositioneerd */
     right: 20px; /* Plaats het aan de rechterkant */
     top: 20px; /* Plaats het iets onder de bovenkant */
-    text-align: right; /* Lijn de tekst rechts uit */
+    text-align: left; /* Lijn de tekst rechts uit */
     font-size: 14px; /* Kleinere tekst voor de gebruikersinformatie */
+
+}
+
+.title{
+   width:350px;
+   
 }
 
 .logout-link {
@@ -58,22 +65,22 @@ main {
 ul {
     list-style-type: none; /* Verwijdert de opsommingstekens */
     padding: 0;
+    
 }
+
+
 
 li {
     padding: 10px 0;
     border-bottom: 1px solid #ddd;
-    display: flex;
-    justify-content: space-between; /* Maakt ruimte tussen de links */
+    display:flex;
+    justify-content:space-between; /* Maakt ruimte tussen de links */
 }
 
 li:last-child {
     border-bottom: none; /* Verwijdert de onderste rand van het laatste item */
 }
 
-.edit-link {
-    margin-right: 10px; /* Ruimte tussen de Edit-link en de Delete-knop */
-}
 
 button {
     background-color: #FF5722;

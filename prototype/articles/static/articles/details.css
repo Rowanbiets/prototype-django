@@ -71,6 +71,36 @@ a:hover {
     background-color: #e64a19;
 }
 
+.comments-section {
+    margin-top: 40px;
+}
+
+.comments-section h3 {
+    color: #333;
+    font-size: 24px;
+}
+
+.comments-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.comments-section ul li {
+    border-bottom: 4px solid #140b0b;
+    padding: 10px 0;
+}
+
+.comments-section ul li p {
+    margin: 5px 0;
+    color: #da0707;
+    
+}
+
+.comments-section form {
+    margin-top: 20px;
+}
+
+
 /* Responsive styles */
 @media (max-width: 600px) {
     h1 {

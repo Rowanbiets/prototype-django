@@ -7,6 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.forms import UserCreationForm
+from .models import Article, Comment
+from .forms import CommentForm
 
 # Artikelen overzicht
 def articles(request):
@@ -82,7 +84,7 @@ def article_edit(request, id):
 
     # Controleer of de ingelogde gebruiker de auteur is
     if article.author != request.user:
-        return HttpResponse("You are not allowed to edit this article.", status=403)
+     return HttpResponse("You are not allowed to edit this article.", status=403)
 
     if request.method == "POST":
         form = ArticleForm(request.POST, instance=article)
@@ -109,3 +111,28 @@ def article_delete(request, id):
 
     return render(request, 'article_confirm_delete.html', {'article': article})
 
+# Artikelen liken
+
+def like_article(request, id):
+    article = get_object_or_404(Article, id=id)
+    article.likes +=1
+    article.save()
+    return redirect('articles') 
+
+# Comments
+def article_detail(request, article_id):
+    article = get_object_or_404(Article, id=article_id)
+    comments = article.comments.all()
+
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.article = article
+            comment.user = request.user
+            comment.save()
+            return redirect('details', article_id=article.id)
+    else:
+        form = CommentForm()
+
+    return render(request, 'articles/details.html', {'article': article, 'comments': comments, 'form': form})

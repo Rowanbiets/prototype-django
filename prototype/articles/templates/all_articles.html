@@ -11,7 +11,7 @@
     <a class="home-button" href="{% url 'main' %}">Home</a> <!-- Home-knop -->
     <header>
         
-        <h1>Your Articles</h1>
+        <h1>Library</h1>
         <div class="user-info">
             {% if user.is_authenticated %}
                 <p><strong>{{ user.username }}</strong></p>
@@ -25,17 +25,24 @@
         <ul>
             {% for article in myarticles %}
                 <li>
-                    <a href="{% url 'details' article.id %}">{{ article.title }}</a>
-                    <div>
-                        <a href="{% url 'article_edit' article.id %}" class="edit-link">Edit</a>
-                        <form method="post" action="{% url 'article_delete' article.id %}" style="display:inline;">
-                            {% csrf_token %}
-                            <button type="submit" class="delete-button">Delete</button>
-                        </form>
-                    </div>
+                    
+                    <a class='title' href="{% url 'details' article.id %}">{{ article.title }}</a>
+
+                  
+                    <a href="{% url 'article_edit' article.id %}">Edit</a>
+                    <form method="post" action="{% url 'article_delete' article.id %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit">Delete</button>
+                    </form>
+               
+                    <form method="post" action="{% url 'like_article' article.id %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit">👍{{ article.likes }}</button>
+                    </form>
                 </li>
             {% endfor %}
         </ul>
+        
     </main>
 </body>
 </html>

@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-Article Details
+    Article Details
 {% endblock %}
 
 {% block content %}
@@ -13,4 +13,7 @@ Article Details
 <p>Author: {{ myarticle.author }}</p>
 <p>Created at: {{ myarticle.created_at }}</p>
 <a href="{% url 'articles' %}">Back to Articles</a>
+
+
+
 {% endblock %}
