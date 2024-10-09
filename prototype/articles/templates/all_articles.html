@@ -8,17 +8,17 @@
     <title>My Articles</title>
 </head>
 <body>
-    <a class="home-button" href="{% url 'main' %}">Home</a> <!-- Home-knop -->
+    <a class="home-button" href="{% url 'main' %}">Home</a> 
     <header>
-        
         <h1>Library</h1>
+        {% include 'header.html' %}
         <div class="user-info">
             {% if user.is_authenticated %}
                 <p><strong>{{ user.username }}</strong></p>
                 <p><a href="{% url 'logout' %}">Logout</a></p>
             {% endif %}
         </div>
-        <a class="main-link" href="{% url 'article_add' %}">Add Article</a> <!-- Link om een artikel toe te voegen -->
+        <a class="main-link" href="{% url 'article_add' %}">Add Article</a> 
        
     </header>
     <main>

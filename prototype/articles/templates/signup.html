@@ -1,15 +1,19 @@
 {% extends "master.html" %}
-
+{%load static%}
 {% block title %}
-Signup
+    Signup
 {% endblock %}
 
 {% block content %}
-  <h2>Signup</h2>
+    <link rel="stylesheet" type="text/css" href="{% static 'articles/signup.css' %}">
+
+    <h2>Signup</h2>
   
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}  
-    <button type="submit">Signup</button>
-  </form>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+        <button type="submit" class="submit-button">Signup</button>
+    </form>
 {% endblock %}

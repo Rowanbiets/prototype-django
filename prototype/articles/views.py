@@ -9,6 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.forms import UserCreationForm
 from .models import Article, Comment
 from .forms import CommentForm
+from django.db.models import Q
 
 # Artikelen overzicht
 def articles(request):
@@ -136,3 +137,15 @@ def article_detail(request, article_id):
         form = CommentForm()
 
     return render(request, 'articles/details.html', {'article': article, 'comments': comments, 'form': form})
+
+# Zoekfunctie
+
+def search_articles(request):
+    query = request.GET.get('q')  # Haalt de zoekterm op uit de URL
+    if query:
+        articles = Article.objects.filter(
+            Q(title__icontains=query) | Q(content__icontains=query)
+        )  
+    else:
+        articles = Article.objects.all()  # Als er geen zoekterm is, toon alle artikelen
+    return render(request, 'search_results.html', {'articles': articles, 'query': query})

@@ -22,7 +22,6 @@ urlpatterns = [
     path('articles/like/<int:id>/', views.like_article, name='like_article'),
     
     
-     
-   
-
+    # ZoekFunctie
+    path('search/', views.search_articles, name='search_articles'),
 ]
