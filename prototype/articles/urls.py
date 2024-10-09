@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views 
-
+from .views import user_activity_timeline
 
 urlpatterns = [
     path('', views.main, name='main'),
@@ -21,7 +21,13 @@ urlpatterns = [
     # Likes 
     path('articles/like/<int:id>/', views.like_article, name='like_article'),
     
-    
+    # tijdlijn
+    path('timeline/', views.user_activity_timeline, name='timeline'),
+   
     # ZoekFunctie
     path('search/', views.search_articles, name='search_articles'),
+    
+    # Statistieken
+    path('statistics/', views.user_statistics, name='user_statistics'),
+    
 ]

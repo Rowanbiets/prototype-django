@@ -11,15 +11,17 @@
     <a class="home-button" href="{% url 'main' %}">Home</a> 
     <header>
         <h1>Library</h1>
-        {% include 'header.html' %}
+       
         <div class="user-info">
             {% if user.is_authenticated %}
                 <p><strong>{{ user.username }}</strong></p>
                 <p><a href="{% url 'logout' %}">Logout</a></p>
             {% endif %}
         </div>
-        <a class="main-link" href="{% url 'article_add' %}">Add Article</a> 
-       
+        <a class="main-link" href="{% url 'article_add' %}">Add Article</a>
+        <a class="main-link" href="{% url 'timeline' %}">History</a> 
+        <a class="main-link" href="{% url 'user_statistics' %}">Statistics</a>
+        {% include 'header.html' %}
     </header>
     <main>
         <ul>

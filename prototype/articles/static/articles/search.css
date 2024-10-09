@@ -1,7 +1,7 @@
 .search-form {
     display: flex;
-    justify-content: flex-end;
-    margin-bottom: 20px;
+    justify-content:flex-start;
+    margin-bottom: 10px;
 }
 
 .search-form input[type="text"] {
@@ -42,5 +42,5 @@ ul li a {
 }
 
 ul li a:hover {
-    text-decoration: underline;
+    text-decoration:none;
 }

@@ -10,6 +10,11 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import Article, Comment
 from .forms import CommentForm
 from django.db.models import Q
+from .models import UserActivity
+from django.db.models import Count, Avg
+from articles.models import Article, Comment,UserActivity
+
+
 
 # Artikelen overzicht
 def articles(request):
@@ -73,10 +78,20 @@ def article_add(request):
             article = form.save(commit=False)  
             article.author = request.user 
             article.save()  
-            return redirect('articles') 
+            
+            # Log activiteit van de gebruiker 
+            UserActivity.objects.create(
+                user=request.user,
+                activity_type='created_article',
+                description=f'{request.user.username} created a new article: {article.title}' 
+            )
+            
+            return redirect('articles')  
     else:
         form = ArticleForm()
+    
     return render(request, 'article_form.html', {'form': form})
+
 
 # Artikelen bewerken
 @login_required
@@ -96,6 +111,7 @@ def article_edit(request, id):
         form = ArticleForm(instance=article)
 
     return render(request, 'article_form.html', {'form': form})
+
     
 # Artikelen verwijderen
 @login_required
@@ -112,31 +128,32 @@ def article_delete(request, id):
 
     return render(request, 'article_confirm_delete.html', {'article': article})
 
+
+
+
 # Artikelen liken
 
 def like_article(request, id):
     article = get_object_or_404(Article, id=id)
     article.likes +=1
     article.save()
+    
+    # Log activiteit van de gebruiker
+    UserActivity.objects.create(
+        user = request.user,
+        activity_type = 'liked article',
+        description = f'{request.user.username} liked the article: {article.title}'
+    )
+    
     return redirect('articles') 
 
-# Comments
-def article_detail(request, article_id):
-    article = get_object_or_404(Article, id=article_id)
-    comments = article.comments.all()
 
-    if request.method == "POST":
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.article = article
-            comment.user = request.user
-            comment.save()
-            return redirect('details', article_id=article.id)
-    else:
-        form = CommentForm()
+# tijdlijn
 
-    return render(request, 'articles/details.html', {'article': article, 'comments': comments, 'form': form})
+def user_activity_timeline(request):
+    activities = UserActivity.objects.filter(user=request.user).order_by('-timestamp')
+    return render(request, 'timeline.html', {'activities': activities})
+
 
 # Zoekfunctie
 
@@ -149,3 +166,29 @@ def search_articles(request):
     else:
         articles = Article.objects.all()  # Als er geen zoekterm is, toon alle artikelen
     return render(request, 'search_results.html', {'articles': articles, 'query': query})
+
+# Statistieken
+
+@login_required
+def user_statistics(request):
+     # Haal alle artikelen op van de gebruiker
+    articles = Article.objects.filter(author=request.user)
+
+    # Statistieken berekeningen
+    total_articles = articles.count()
+    total_likes_received = articles.aggregate(total_likes=Count('like'))['total_likes']
+    average_likes_per_article = articles.aggregate(avg_likes=Avg('like__count'))['avg_likes'] or 0
+    total_comments_posted = Comment.objects.filter(user=request.user).count()
+    
+    # Populairste artikel (meeste likes)
+    most_liked_article = articles.annotate(like_count=Count('like')).order_by('-like_count').first()
+
+    # Data voor in de template
+    context = {
+        'total_articles': total_articles,
+        'total_likes_received': total_likes_received,
+        'average_likes_per_article': average_likes_per_article,
+        'total_comments_posted': total_comments_posted,
+        'most_liked_article': most_liked_article
+    }
+    return render(request, 'statistics.html', context)

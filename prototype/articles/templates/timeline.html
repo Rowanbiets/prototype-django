@@ -1,0 +1,15 @@
+{% extends 'master.html' %}
+{%load static%}
+{% block content %}
+<link rel="stylesheet" href="{% static 'articles/timeline.css' %}">
+<h2>History</h2>
+<ul class="timeline">
+    {% for activity in activities %}
+    <li>
+        <div class="timeline-content">
+            <p>{{ activity.timestamp|date:"Y-m-d H:i" }} - {{ activity.description }}</p>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
