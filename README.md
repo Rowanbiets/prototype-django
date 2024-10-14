@@ -32,7 +32,7 @@ De applicatie bestaat uit een enkele app, articles, die de functionaliteiten voo
  - De tijdlijn toont gebruikersactiviteiten zoals aangemaakte artikelen en het aantal ontvangen likes.
  - Dit biedt gebruikers inzicht in hun activiteit binnen de applicatie.
 
-**Statistieken:**: 
+**Statistieken:**
  - Gebruikers kunnen hun persoonlijke statistieken bekijken, zoals het totaal aantal aangemaakte artikelen, het totaal aantal ontvangen likes en het populairste artikel.
  - De statistieken worden visueel weergegeven met behulp van Chart.js voor een overzichtelijke en intuïtieve gebruikerservaring.
 
