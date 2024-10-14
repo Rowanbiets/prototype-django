@@ -1,10 +1,20 @@
 # Prototype-django
 
-Dit project is een eenvoudige Django-webapplicatie waarmee geregistreerde gebruikers artikelen kunnen maken, bekijken en beheren. Het project maakt gebruik van het Django-framework en heeft basisfunctionaliteiten zoals gebruikersauthenticatie, artikelbeheer en een administratief dashboard.
+Dit project is een Django-webapplicatie waarmee geregistreerde gebruikers artikelen kunnen maken, bekijken en beheren. Het project maakt gebruik van het Django-framework en heeft basisfunctionaliteiten zoals gebruikersauthenticatie, artikelbeheer en een administratief dashboard.
+
+Naast deze basisfunctionaliteiten biedt de applicatie ook een gebruikersactiviteitstijdlijn en een statistiekenpagina waar gebruikers hun artikelstatistieken kunnen bekijken, zoals het aantal gemaakte artikelen en ontvangen likes.
+
 
 ## Projectstructuur
 
-De applicatie bestaat uit een enkele app, `articles`, die de functionaliteiten voor artikelbeheer biedt.
+De applicatie bestaat uit een enkele app, articles, die de functionaliteiten voor artikelbeheer biedt. Binnen de articles app worden verschillende modellen, views, forms en templates gebruikt om de gebruiker een volledige ervaring te bieden.
+
+ **Belangrijke componenten**:
+
+- Models: De Article, Comment, en UserActivity modellen worden gebruikt voor het opslaan van artikelen, reacties en gebruikersactiviteiten.
+- Views: Function-based views (FBVs) voor het beheren van artikelen, zoals toevoegen, bewerken, en verwijderen van artikelen.
+- Templates: HTML-pagina's die worden gerenderd voor elke view, met de nadruk op het weergeven van artikelen, het weergeven van een tijdlijn, en het tonen van statistieken.
+- Statistieken en grafieken: Een statistiekenpagina die gebruikersinformatie visualiseert met behulp van Chart.js.
 
 ### Functionaliteiten
 
