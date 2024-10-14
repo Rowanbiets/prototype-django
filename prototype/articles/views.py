@@ -171,24 +171,27 @@ def search_articles(request):
 
 @login_required
 def user_statistics(request):
-     # Haal alle artikelen op van de gebruiker
+    # Verkrijg artikelen van de ingelogde gebruiker
     articles = Article.objects.filter(author=request.user)
 
-    # Statistieken berekeningen
+    # Aantal artikelen
     total_articles = articles.count()
-    total_likes_received = articles.aggregate(total_likes=Count('like'))['total_likes']
-    average_likes_per_article = articles.aggregate(avg_likes=Avg('like__count'))['avg_likes'] or 0
-    total_comments_posted = Comment.objects.filter(user=request.user).count()
-    
-    # Populairste artikel (meeste likes)
-    most_liked_article = articles.annotate(like_count=Count('like')).order_by('-like_count').first()
 
-    # Data voor in de template
+    # Totaal aantal likes
+    total_likes_received = sum(article.likes for article in articles)
+
+    # Gemiddeld aantal likes per artikel
+    average_likes_per_article = total_likes_received / total_articles if total_articles > 0 else 0
+
+    # Meest gelikete artikel
+    most_liked_article = articles.order_by('-likes').first()
+
+    # Maak de context aan voor de template
     context = {
         'total_articles': total_articles,
         'total_likes_received': total_likes_received,
         'average_likes_per_article': average_likes_per_article,
-        'total_comments_posted': total_comments_posted,
-        'most_liked_article': most_liked_article
+        'most_liked_article': most_liked_article,
     }
+
     return render(request, 'statistics.html', context)

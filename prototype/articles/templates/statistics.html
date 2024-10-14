@@ -1,21 +1,21 @@
 {% extends 'master.html' %}
 {% block content %}
+{%load static%}
+<link rel="stylesheet" href="{% static 'articles/statistics.css' %}">
+<h2>Statistieken</h2>
 
-  <h2>Statistieken</h2>
-  
-  <ul>
+<ul>
     <li>Aantal aangemaakte artikelen: {{ total_articles }}</li>
     <li>Totaal aantal likes ontvangen: {{ total_likes_received }}</li>
     <li>Gemiddeld aantal likes per artikel: {{ average_likes_per_article }}</li>
-    <li>Aantal reacties geplaatst: {{ total_comments_posted }}</li>
     {% if most_liked_article %}
-      <li>Populairste artikel: <a href="{% url 'details' most_liked_article.id %}">{{ most_liked_article.title }}</a> ({{ most_liked_article.like_count }} likes)</li>
+        <li>Populairste artikel: <a href="{% url 'details' most_liked_article.id %}">{{ most_liked_article.title }}</a> ({{ most_liked_article.likes }} likes)</li>
     {% else %}
-      <li>Populairste artikel: Geen artikelen</li>
+        <li>Populairste artikel: Geen artikelen</li>
     {% endif %}
-  </ul>
+</ul>
 
-  <canvas id="activityChart"></canvas>
+<canvas id="activityChart"></canvas>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
@@ -23,12 +23,12 @@
     var activityChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Articles Created', 'Comments Posted', 'Total Likes'],
+            labels: ['Articles Created', 'Total Likes'],
             datasets: [{
                 label: 'User Activity',
-                data: [{{ total_articles }}, {{ total_comments_posted }}, {{ total_likes_received }}],
-                backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 99, 132, 0.2)'],
-                borderColor: ['rgba(75, 192, 192, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)'],
+                data: [{{ total_articles }}, {{ total_likes_received }}],
+                backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+                borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)'],
                 borderWidth: 1
             }]
         },
@@ -41,5 +41,5 @@
         }
     });
 </script>
-  
+
 {% endblock %}
