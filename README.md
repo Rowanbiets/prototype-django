@@ -36,7 +36,7 @@ De applicatie bestaat uit een enkele app, articles, die de functionaliteiten voo
  - Gebruikers kunnen hun persoonlijke statistieken bekijken, zoals het totaal aantal aangemaakte artikelen, het totaal aantal ontvangen likes en het populairste artikel.
  - De statistieken worden visueel weergegeven met behulp van Chart.js voor een overzichtelijke en intuïtieve gebruikerservaring.
 
- **Admin Interface:**:
+ **Admin Interface:**
  - Beheerders kunnen via de Django admin-interface artikelen en gebruikers beheren.
 
  ### Sources
