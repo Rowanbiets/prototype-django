@@ -46,7 +46,7 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('articles')  # Redirect naar artikelenpagina na login
+            return redirect('articles') 
         else:
             return render(request, 'login.html', {'error': 'Invalid credentials'})
     return render(request, 'login.html')
@@ -105,7 +105,7 @@ def article_edit(request, id):
     if request.method == "POST":
         form = ArticleForm(request.POST, instance=article)
         if form.is_valid():
-            form.save()  # Auteur blijft hetzelfde; dit slaat de bewerking op
+            form.save()  
             return redirect('articles')
     else:
         form = ArticleForm(instance=article)
@@ -114,11 +114,13 @@ def article_edit(request, id):
 
     
 # Artikelen verwijderen
+
 @login_required
 def article_delete(request, id):
     article = get_object_or_404(Article, id=id)
 
     # Controleer of de ingelogde gebruiker de auteur is
+    
     if article.author != request.user:
         return HttpResponse("You are not allowed to delete this article.", status=403)
 
@@ -166,6 +168,7 @@ def search_articles(request):
     else:
         articles = Article.objects.all()  # Als er geen zoekterm is, toon alle artikelen
     return render(request, 'search_results.html', {'articles': articles, 'query': query})
+
 
 # Statistieken
 
