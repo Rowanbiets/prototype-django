@@ -22,8 +22,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'articles.apps.ArticlesConfig',  # Custom app
+    'articles',
+    'sslserver',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -62,7 +64,7 @@ WSGI_APPLICATION = 'prototype.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        # Replace this value with your local database's connection string.
+        
         default='postgresql://prototype_django_user:7RU3FjjPXTcd9xM5kM0eXzfwW1xH9735@dpg-ct82kge8ii6s73cbngu0-a.frankfurt-postgres.render.com/prototype_django',
         conn_max_age=600
     )
